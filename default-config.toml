@@ -1,0 +1,40 @@
+name = "Default Config"
+description = """
+    Default configuration, containing all possible options
+"""
+
+[loading]
+type = "load-all"
+# type = "load-by-author"
+# type = "load-by-title"
+[loading.settings]
+# author = "Роулинг"
+# title = "Поттер"
+
+[segmentation]
+type = "block"
+# type = "sentence"
+# type = "paragraph"
+[segmentation.settings]
+block-length = 2000
+
+[embedding]
+type = "sentence-transformers"
+[embedding.settings]
+model = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+[sorting]
+type = "similarity"
+# type = "biased-text-rank"
+[sorting.settings]
+# bias = 0.85
+
+[prompting]
+type = "basic-prompt"
+[prompting.settings]
+
+[inference]
+type = "unsloth"
+[inference.settings]
+model = "unsloth/Meta-Llama-3.1-8B"
+max-tokens = 2048

@@ -1,3 +1,7 @@
 .venv
+.idea
 data
+data-old
 .ipynb_checkpoints
+**/__pycache__
+**/*.db
