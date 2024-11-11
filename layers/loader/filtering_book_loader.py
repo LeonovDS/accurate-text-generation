@@ -1,9 +1,8 @@
 import os
-import sqlite3
 from typing import Callable, Iterator
 
-from layers.loading.book_loader import BookLoader
-from layers.model.book import Book
+from model.book import Book
+from layers.loader.book_loader import BookLoader
 
 
 class FilteringBookLoader(BookLoader):

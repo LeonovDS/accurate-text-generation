@@ -1,20 +1,25 @@
-from typing import cast, Callable
+from typing import cast, TYPE_CHECKING, Literal
 
 from numpy import ndarray
-from sentence_transformers import SentenceTransformer
-from torch import Tensor
 
 from layers.embedding.embedding import Embedding
-from layers.model.block import Block, BlockWithEmbedding
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
+from model.block import Block, BlockWithEmbedding
+from torch import Tensor
 
 
 class SentenceTransformerEmbedding(Embedding):
-    def __init__(self, model: Callable[[], SentenceTransformer]):
+
+    def __init__(self, model_name: str, device: Literal['cuda', 'cpu']):
         self.__model = None
-        self.__model_factory = model
+        self.__model_name = model_name
+        self.__device = device
 
     def _on_enter(self):
-        self.__model = self.__model_factory()
+        from sentence_transformers import SentenceTransformer
+        self.__model = SentenceTransformer(self.__model_name, device=self.__device)
         return self
 
     def _on_exit(self):

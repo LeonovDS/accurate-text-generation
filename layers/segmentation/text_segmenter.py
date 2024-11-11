@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-
-from layers.model.block import Block
+from model.block import Block
 
 
 class TextSegmenter(ABC):

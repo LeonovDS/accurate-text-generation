@@ -1,8 +1,7 @@
-from abc import ABC, abstractmethod
+from layers.prompt.prompt_builder import PromptBuilder
 from model.block import BlockWithEmbedding
 
 
-class PromptBuilder(ABC):
-    @abstractmethod
+class QueryOnlyPromptBuilder(PromptBuilder):
     def process(self, blocks: list[BlockWithEmbedding], query: BlockWithEmbedding) -> str:
-        pass
+        return f"{query[0].text}"

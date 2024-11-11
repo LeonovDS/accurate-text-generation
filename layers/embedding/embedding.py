@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from torch import Tensor
 
-from layers.model.block import Block, BlockWithEmbedding
+from model.block import Block, BlockWithEmbedding
 
 
 class Embedding(ABC):

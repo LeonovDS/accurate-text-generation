@@ -1,5 +1,3 @@
-from unsloth import FastLanguageModel
-
 from layers.inference.inference_model import InferenceModel
 
 
@@ -11,15 +9,15 @@ class UnslothInferenceModel(InferenceModel):
         self.__output_tokens = output_tokens
         self.__load_in_4bit = load_in_4bit
 
-    def __enter__(self):
+    def _on_enter(self):
+        from unsloth import FastLanguageModel
         self.__model, self.__tokenizer = FastLanguageModel.from_pretrained(
             model_name=self.__model_name,
             load_in_4bit=self.__load_in_4bit,
         )
         FastLanguageModel.for_inference(self.__model)
-        return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def _on_exit(self):
         if self.__model is not None:
             del self.__model
         if self.__tokenizer is not None:
